@@ -1,3 +1,7 @@
 Global Air Pollution csv: https://www.kaggle.com/datasets/hasibalmuzdadid/global-air-pollution-dataset
 
 WHO Air Quality csv: https://www.who.int/publications/m/item/who-ambient-air-quality-database-(update-jan-2024)
+
+Ethical considerations and knowledge of biases are vital for ensuring the quality output and insights generated regarding data collection and usage. With the AQI data, although personally identifiable information is not collected, it is still essential for the data collection process to have transparency, accountability and integrity. When working with environmental data, it is crucial to be vigilant and aware that data and AQI rankings provided could be manipulated based on the location of the city, the station, the time of year, etc. These different variables can all be used by local governments to report hazardous air quality in cities as moderate to prevent global scrutiny from the WHO and alarming local citizens.
+
+In the Vincent Branch, there is an Excel file that was used for the initial investigation of the data analysis to see what the overall data looked like. Then, in the Map Weather Jupiter notebook, the Excel file is imported and plotted with HV plots based on the AQI air quality categories that were the most important in the analysis. It shows the data on the category as well as the city name based on the hover over the points plotted via LAT and Lng.
