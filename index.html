@@ -9,35 +9,63 @@
 
     <link rel="stylesheet" href="/static/style.css">
 
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="https://cdn.plot.ly/plotly-2.29.1.min.js" charset="utf-8"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6"></script>
+    <script src="//d3js.org/topojson.v1.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
     crossorigin="" />
 
+    <!-- Leaflet JavaScript code -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
     crossorigin=""></script>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js"></script>
 
   </head>
 
   <body>
 
-    <div>
-      <button class="btn btn-secondary" onclick="plotData(index='AQI')">AQI</button>
-      <button class="btn btn-secondary" onclick="plotData(index='CO')">CO</button>
-      <button class="btn btn-secondary" onclick="plotData(index='Ozone')">Ozone</button>
-      <button class="btn btn-secondary" onclick="plotData(index='NO2')">NO2</button>
-      <button class="btn btn-secondary" onclick="plotData(index='PM2.5')">PM2.5</button>
+    <div class="container">
+
+      <div class="row">
+        
+
+        <div>
+          <div class="col-md-12 p-5 text-center bg-light">
+            <h1 class="">Global Air Quality Data</h1>
+          </div>
+        </div>
+    
+
+        <div class="join">
+          <input class="join-item btn" type="radio" name="index" onclick="plotData(polIndex.aqi)" aria-label="AQI" checked/>
+          <input class="join-item btn" type="radio" name="index" onclick="plotData(polIndex.co)" aria-label="CO" />
+          <input class="join-item btn" type="radio" name="index" onclick="plotData(polIndex.no2)" aria-label="NO2" />
+          <input class="join-item btn" type="radio" name="index" onclick="plotData(polIndex.ozone)" aria-label="Ozone" />
+          <input class="join-item btn" type="radio" name="index" onclick="plotData(polIndex.pm25)" aria-label="PM2.5" />
+        </div>
+
+        <div class="relative"> 
+          <div class="absolute left-0" id="map"></div>
+
+          <div class="absolute right-0" id="scatter"></div>
+
+          <div class="absolute right-0" id="bar"></div>
+        </div>
+
+
+      </div>
+
     </div>
 
-    <div id="map"></div>
-
-
-    <script  src="./static/map.js"> </script>
-
+    <script src="./static/map.js"> </script>
   </body>
 
 
