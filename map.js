@@ -65,26 +65,7 @@ function plotData(index) {
 
   Plotly.react('scatter', scatterData, scatterLayout)
 
-  // let barData = [
-  //   {
-  //     type: "bar",
-  //     mode: 'markers',
-  //     x: (unpack(rows, 'country')).slice(0, 10),
-  //     y: (unpack(rows, index[0])).slice(0, 10),
-   
-  //   }
-  // ]
 
-  // let barLayout = {
-  //   margin: { r: 50, t: 50, b: 50, l: 200 }, 
-  //   height: 350,
-  //   width: 900
-  // } 
-
-  // Plotly.react('bar', barData, barLayout)
-
-
- 
 
 
 
