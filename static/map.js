@@ -1,54 +1,93 @@
-const aqiURL = '../Resources/aqi_data.csv';
+const aqiURL = './Resources/aqi_data.csv'
+let aqiData
 
-
-const aqiData = d3.csv(aqiURL).then(function(data) {
-    return data
-});
-
-console.log(aqiData.then())
-
-
-
-function plotData() {
-
+let polIndex = {
+  aqi: ['aqi_value', 'aqi_category', 250],
+  co: ['co_aqi_value', 'co_aqi_category', 15], 
+  no2: ['no2_aqi_value', 'no2_aqi_category', 25],
+  ozone: ['ozone_aqi_value', 'ozone_aqi_category', 100],
+  pm25: ['pm25_aqi_value', 'pm25_aqi_category', 200]
 }
 
-// Create a map object.
-let myMap = L.map("map", {
-    center: [0, 0], // Set center to [0, 0] to focus on the world
-    zoom: 3 // Zoom out to show the entire globe
-  });
-  
-  // Add a tile layer.
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-  }).addTo(myMap);
-  
-  // Add a title to the map.
-  let titleControl = L.control({ position: 'topleft' });
-  
-  titleControl.onAdd = function (map) {
-    let div = L.DomUtil.create('div', 'map-title');
-    div.innerHTML = '<h2>Countries with AQI Category "Very Unhealthy"</h2>';
-    return div;
-  };
-  
-  titleControl.addTo(myMap);
-  
-  // Loop through the countries array, and create one marker for each city.
-  for (let i = 0; i < countries.length; i++) {
-    // Get the city's name and location.
-    let cityName = countries[i].name;
-    let cityLocation = countries[i].location;
-    
-    let customIcon = L.divIcon({
-        className: 'custom-div-icon',
-        html: `<div style="background-color: orange; width: 30px; height: 30px; border-radius: 50%; text-align: center; font-weight: bold;">!</div>`
-    });
-    
-    // Create a circle marker with the custom icon.
-    L.marker(cityLocation, { icon: customIcon })
-        .bindPopup(`<h1>${cityName}</h1>`)
-        .addTo(myMap);
+
+function plotData(index) {
+  Plotly.d3.csv(aqiURL, function(err, rows) {
+    function unpack(rows, key) {
+      return rows.map(function(row) {
+        return row[key]
+      })
+    }
+
+    let data = [
+      {
+        type: "scattermapbox",
+        lon: unpack(rows, "Lon"),
+        lat: unpack(rows, "Lat"),
+        text: unpack(rows, 'city').map(i => `City: ${i}`),
+        hoverinfo: 'text', 
+        marker: { 
+          color: "fuchsia", 
+          size: unpack(rows, index[0]).map(i => (i/index[2])*10)
+      }
+      }
+    ];
+
+    let layout = {
+      dragmodeL: 'zoom',
+      showlegend: false,
+      mapbox: {
+        style: "open-street-map",
+        zoom: 1,
+        center: {lon: 10, lat: 20}
+    },
+      margin: { r: 0, t: 0, b: 0, l: 0 },
+      height: 500,
+      width: 900
   }
-  
+
+  Plotly.react('map', data, layout)
+
+  let scatterData = [
+    {
+      type: "scatter",
+      mode: 'markers',
+      x: unpack(rows, index[0]),
+      y: unpack(rows, index[1]),
+   
+    }
+  ];
+
+  let scatterLayout = {
+    margin: { r: 50, t: 50, b: 50, l: 200 }, 
+    height: 350,
+    width: 900
+  } 
+
+  Plotly.react('scatter', scatterData, scatterLayout)
+
+  // let barData = [
+  //   {
+  //     type: "bar",
+  //     mode: 'markers',
+  //     x: (unpack(rows, 'country')).slice(0, 10),
+  //     y: (unpack(rows, index[0])).slice(0, 10),
+   
+  //   }
+  // ]
+
+  // let barLayout = {
+  //   margin: { r: 50, t: 50, b: 50, l: 200 }, 
+  //   height: 350,
+  //   width: 900
+  // } 
+
+  // Plotly.react('bar', barData, barLayout)
+
+
+ 
+
+
+
+})}
+
+plotData(polIndex.aqi)
