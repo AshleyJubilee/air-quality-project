@@ -38,7 +38,7 @@ function plotData(index) {
       mapbox: {
         style: "open-street-map",
         zoom: 1,
-        center: {lon: 10, lat: 20}
+        center: {lon: 10, lat: 20},
     },
       margin: { r: 0, t: 0, b: 0, l: 0 },
       height: 500,
@@ -60,14 +60,10 @@ function plotData(index) {
   let scatterLayout = {
     margin: { r: 50, t: 50, b: 50, l: 200 }, 
     height: 350,
-    width: 900
+    width: 900,
   } 
 
   Plotly.react('scatter', scatterData, scatterLayout)
-
-
-
-
 
 })}
 
