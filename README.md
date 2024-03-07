@@ -3,6 +3,9 @@ Global Air Pollution csv: https://www.kaggle.com/datasets/hasibalmuzdadid/global
 WHO Air Quality csv: https://www.who.int/publications/m/item/who-ambient-air-quality-database-(update-jan-2024)
 
 Presentation: https://docs.google.com/presentation/d/1NiEffSsOKQUGsT8hYK-jNS1UDmmweo96s2lirHPthAM/edit#slide=id.g2c05c541633_3_22
+ 
+Dashboard View: https://github.com/AshleyJubilee/air-quality-project
+- Toggle between the different tabs to view how the world map plots cities based on different AQI indexes and the corresponding categorizations of the AQI data.
 
 
 This project aims to address the important aspects of raising awareness, conducting research, and developing solutions to improve air quality.
@@ -58,3 +61,6 @@ for making a request to the Geoapify API by appending specific query parameters 
 14. Data from csv table "Very_Unhealthy" was converted to file.js and map with "Very_Unhealthy" countiris was created.
 
 In the Vincent Branch, an Excel file was used for the initial data analysis investigation to see what the overall data looked like. Then, in the Map Weather Jupiter notebook, the Excel file is imported and plotted with HV plots based on the AQI air quality categories that were the most important in the analysis. It shows the category data and the city name based on the hover over the points plotted via LAT and Lng.
+
+
+
