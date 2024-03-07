@@ -37,6 +37,10 @@
 7. Disable tap highlights on iOS
 */
 
+.maps {
+  display: inline-block
+}
+
 html,
 :host {
   line-height: 1.5;

@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Air Quality Project</title>
 
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="./style.css">
 
 
     <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
@@ -22,15 +22,7 @@
     <div class="container">
 
       <div class="row">
-        
-
-        <div>
-          <div class="col-md-12 p-5 text-center bg-light">
-            <h1 class="">Global Air Quality Data</h1>
-          </div>
-        </div>
-    
-
+      
         <div class="join">
           <input class="join-item btn" type="radio" name="index" onclick="plotData(polIndex.aqi)" aria-label="AQI" checked/>
           <input class="join-item btn" type="radio" name="index" onclick="plotData(polIndex.co)" aria-label="CO" />
@@ -39,10 +31,10 @@
           <input class="join-item btn" type="radio" name="index" onclick="plotData(polIndex.pm25)" aria-label="PM2.5" />
         </div>
 
-        <div class="relative"> 
-          <div class="absolute left-0" id="map"></div>
+        <div class="maps"> 
+          <div id="map"></div>
 
-          <div class="absolute right-0" id="scatter"></div>
+          <div id="scatter"></div>
         </div>
 
 
